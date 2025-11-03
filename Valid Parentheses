@@ -1,0 +1,22 @@
+class Solution(object):
+    def isValid(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        stack = []
+        # A dictionary to map closing brackets to their corresponding opening brackets
+        close_to_open = {")": "(", "]": "[", "}": "{"}
+
+        for char in s:
+            if char in close_to_open:  # If the character is a closing bracket
+                # Check if the stack is not empty and the top of the stack matches the expected opening bracket
+                if stack and stack[-1] == close_to_open[char]:
+                    stack.pop()  # Pop the matching opening bracket
+                else:
+                    return False  # Mismatch or no opening bracket to match
+            else:  # If the character is an opening bracket
+                stack.append(char)  # Push it onto the stack
+
+        # The string is valid if and only if the stack is empty at the end
+        return not stack
