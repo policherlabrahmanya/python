@@ -1,0 +1,26 @@
+class Solution(object):
+    def lengthOfLongestSubstring(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        char_set = set()  # To store characters in the current window
+        left = 0          # Left pointer of the sliding window
+        max_length = 0    # Stores the maximum length found
+
+        for right in range(len(s)):
+            # If the character at the right pointer is already in the set,
+            # it means we have a repeating character.
+            while s[right] in char_set:
+                # Remove characters from the left of the window until the
+                # repeating character is removed from the set.
+                char_set.remove(s[left])
+                left += 1
+            
+            # Add the current character at the right pointer to the set.
+            char_set.add(s[right])
+            
+            # Update the maximum length found so far.
+            max_length = max(max_length, right - left + 1)
+            
+        return max_length
