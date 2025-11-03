@@ -1,0 +1,17 @@
+class Solution(object):
+    def isPalindrome(self, x):
+        """
+        :type x: int
+        :rtype: bool
+        """
+        # Negative numbers cannot be palindromes (unless they are 0)
+        if x < 0:
+            return False
+
+        # Convert the integer to a string for easy reversal and comparison
+        s = str(x)
+        
+        # Compare the string with its reversed version
+        # s[::-1] creates a reversed copy of the string s
+        return s == s[::-1]
+
